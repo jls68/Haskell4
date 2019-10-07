@@ -10,7 +10,7 @@ This is closely based on Robert D. Cameron's code
 Note that we are about to import the parser for TINY as a module. For this to work
 you need to have the parser in a file called TINYParser.lhs in the same directory
 as this file. Then run ghci with just the filename of this file as the file to load.
-So, type "ghci CW4_simple_error_TINY_denot.hs" to get the parser to load and then this file.
+So, type "ghci CW4_simple_error_TINY.lhs" to get the parser to load and then this file.
 
 > import TINYParser
 
