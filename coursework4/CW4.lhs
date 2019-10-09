@@ -153,9 +153,17 @@ that returns Unbound for every identifier.
 >     OK v1 (m1, i1, o1) -> OKc (m1, i1, o1 ++ [v1])
 >     Error -> Errorc
 
-cmd_semantics (IfThenElse exp cmd1 cmd2) s = For you to do!
+> cmd_semantics (IfThenElse exp cmd1 cmd2) s = 
+>   case (exp_semantics exp s) of
+>     OK (Boolean True) s1 -> cmd_semantics cmd1 s1
+>     OK (Boolean False) s1 -> cmd_semantics cmd2 s1
+>     _ -> Errorc
 
-cmd_semantics (WhileDo exp cmd) s = For you to do!
+> cmd_semantics (WhileDo exp cmd) s =
+>   case (exp_semantics exp s) of
+>     OK (Boolean True) s1 -> cmd_semantics (Seq cmd (WhileDo exp cmd)) s1
+>     OK (Boolean False) s1 -> OKc s1
+>     _ -> Errorc
 
 
 > cmd_semantics (Seq cmd1 cmd2) s =
